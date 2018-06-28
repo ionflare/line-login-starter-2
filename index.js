@@ -8,7 +8,7 @@ const app = express();
 const line_login = require("line-login");
 const session = require("express-session");
 const session_options = {
-    secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
+    secret: "2fb6dfcbe678318000471b205f84829c",
     resave: false,
     saveUninitialized: false
 }
@@ -16,9 +16,9 @@ app.use(session(session_options));
 
 // 認証の設定。
 const login = new line_login({
-    channel_id: process.env.LINE_LOGIN_CHANNEL_ID,
-    channel_secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
-    callback_url: process.env.LINE_LOGIN_CALLBACK_URL
+    channel_id: "1590015276",
+    channel_secret: "2fb6dfcbe678318000471b205f84829c",
+    callback_url: "https://line-login-starter-1.herokuapp.com/auth"
 });
 
 // サーバー起動設定。
