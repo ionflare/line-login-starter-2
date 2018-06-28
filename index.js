@@ -77,7 +77,8 @@ function mongoQuery() {
     var dbo = db.db("linebookingsys");
     var query = { name: "chanon"};
     //dbo.collection("customers").findOne({}, function(err, result) {
-    dbo.collection("q_info").find(query).toArray(function(err, result)
+    //dbo.collection("q_info").find(query).toArray(function(err, result)
+    dbo.getCollection('q_info').find({}).toArray(function(err, result)
     {
     if (err) { return reject( err );}
     else{
