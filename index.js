@@ -44,6 +44,47 @@ app.get("/callback", login.callback(
 // ファイルの末尾に追加
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
-app.get("/", (req, res) => {
-    res.render(__dirname + "/index");
+app.get("/", async (req, res) => {
+   await res.render(__dirname + "/index");
+    
+// var geo = await testGeoIP("58.10.224.143");  
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+var MongoClient = require('mongodb').MongoClient
+//var url = "mongodb://localhost:27017";
+var url = "mongodb://chanon:chanon1234@ds135552.mlab.com:35552/mlabtest";
+
+function mongoQuery() {
+    
+    return new Promise( ( resolve, reject ) => {
+   
+     MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //var dbo = db.db("mydb");
+    var dbo = db.db("mlabtest");
+    var query = { name: "Test ja"};
+    //dbo.collection("customers").findOne({}, function(err, result) {
+    dbo.collection("customers").find(query).toArray(function(err, result)
+    {
+    if (err) { return reject( err );}
+    else{
+        resolve(result);
+    }
+    db.close();
+    });
+    });
+  });
+}    
+
