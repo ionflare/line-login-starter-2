@@ -48,7 +48,7 @@ app.get("/", async (req, res) => {
    //await res.render(__dirname + "/index");
    var q_info = await mongoQuery();
    //await res.send(q_info[0].queue);
-   await res.send("xxxx");
+   await res.send(q_info.length);
 // var geo = await testGeoIP("58.10.224.143");  
 })
 
