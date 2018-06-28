@@ -48,7 +48,7 @@ app.get("/", async (req, res) => {
    //await res.render(__dirname + "/index");
    var q_info = await mongoQuery();
    //await res.send(q_info[0].queue);
-   await res.send(q_info.length);
+   await res.send(q_info.name);
 // var geo = await testGeoIP("58.10.224.143");  
 })
 
@@ -68,6 +68,7 @@ var MongoClient = require('mongodb').MongoClient
 //var url = "mongodb://localhost:27017";
 var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
 
+/*
 function mongoQuery() {
     
     return new Promise( ( resolve, reject ) => {
@@ -89,4 +90,30 @@ function mongoQuery() {
     });
   });
 }    
-
+*/
+function mongoQuery() {
+    
+    return new Promise( ( resolve, reject ) => {
+   
+     MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //var dbo = db.db("mydb");
+    var dbo = db.db("linebookingsys");
+    dbo.collection("q_info").findOne({}, function(err, result) {
+      
+       if ( err )
+       return reject( err );
+        else
+                {
+                 resolve(result);
+                }
+        //if (err) throw err;
+        //console.log(result.name + " " +result.address);
+        db.close();
+        });
+    });
+   
+  });
+  
+}    
+ 
