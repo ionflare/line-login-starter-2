@@ -46,7 +46,8 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.get("/", async (req, res) => {
    await res.render(__dirname + "/index");
-    
+   var q_info = await mongoQuery();
+await res.send("555");
 // var geo = await testGeoIP("58.10.224.143");  
 })
 
@@ -64,7 +65,7 @@ app.get("/", async (req, res) => {
 
 var MongoClient = require('mongodb').MongoClient
 //var url = "mongodb://localhost:27017";
-var url = "mongodb://chanon:chanon1234@ds135552.mlab.com:35552/mlabtest";
+var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
 
 function mongoQuery() {
     
@@ -73,10 +74,10 @@ function mongoQuery() {
      MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     //var dbo = db.db("mydb");
-    var dbo = db.db("mlabtest");
-    var query = { name: "Test ja"};
+    var dbo = db.db("linebookingsys");
+    var query = { name: "chanon"};
     //dbo.collection("customers").findOne({}, function(err, result) {
-    dbo.collection("customers").find(query).toArray(function(err, result)
+    dbo.collection("q_info").find(query).toArray(function(err, result)
     {
     if (err) { return reject( err );}
     else{
