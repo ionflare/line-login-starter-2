@@ -47,7 +47,8 @@ app.set("view engine", "ejs");
 app.get("/", async (req, res) => {
    //await res.render(__dirname + "/index");
    var q_info = await mongoQuery();
-   await res.send(q_info[0].queue);
+   //await res.send(q_info[0].queue);
+   await res.send("xxxx");
 // var geo = await testGeoIP("58.10.224.143");  
 })
 
@@ -76,9 +77,8 @@ function mongoQuery() {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     var query = { name: "chanon"};
-    //dbo.collection("customers").findOne({}, function(err, result) {
-    //dbo.collection("q_info").find(query).toArray(function(err, result)
-    dbo.getCollection('q_info').find({}).toArray(function(err, result)
+    dbo.collection("q_info").find(query).toArray(function(err, result)
+
     {
     if (err) { return reject( err );}
     else{
