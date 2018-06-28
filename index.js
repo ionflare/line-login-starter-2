@@ -54,7 +54,7 @@ app.get("/", async (req, res) => {
 
 
 app.get('/sitemap',function(req,res){
-  res.sendFile('sitemap.html');
+  res.sendFile(__dirname+'/sitemap.html');
 });
 
 
