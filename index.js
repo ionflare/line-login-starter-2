@@ -53,10 +53,16 @@ app.get('/', function (req, res) {
 })
 */
 
-//app.get("/", async (req, res) => {
+app.get("/", async (req, res) => {
+    var q_info = await mongoQuery();
+    await res.render(__dirname + "/index" ,{ posts: q_info });
+    
+    
+    
+});
 
 
-
+/*
 app.set("view engine", "ejs");  
 app.get('/', function(req, res, next) {  
    let blogPosts = [
@@ -93,6 +99,7 @@ app.get('/', function(req, res, next) {
    //await res.send(q_info.queue.toString());
 // var geo = await testGeoIP("58.10.224.143");  
 });
+*/
 
 
 app.get('/sitemap',function(req,res){
