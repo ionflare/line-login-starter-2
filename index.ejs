@@ -1,5 +1,49 @@
 <html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
+    
+    
+    
+    <h3><div id="queInfo"></div></h3> 
     <a href="/auth"><img src="/login_btn.png"></img></a>
+    
+    
+    
+<script type="text/javascript">
+
+  
+    var MongoClient = require('mongodb').MongoClient
+    //var url = "mongodb://localhost:27017";
+   var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
+
+   
+  
+    var MongoClient = require('mongodb').MongoClient
+   var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
+  
+  
+   MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //var dbo = db.db("mydb");
+    var dbo = db.db("linebookingsys");
+    
+    dbo.collection("q_info").findOne({}, function(err, result) {
+        if(!err)
+        {
+          $("#queInfo").text("current queue : " + result.queInfo.toString());
+        }
+        else
+        {
+          $("#queInfo").text("error occured");
+        }
+        
+         db.close();
+    }
+    }    
+ 
+ 
+  </script>
+    
 </body>
 </html>
