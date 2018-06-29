@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
   res.render('index1', { title: 'Hey', message: 'Hello there!' });
 })
 */
-
+app.set("view engine", "ejs");  
 app.get("/", async (req, res) => {
     var q_info = await mongoQuery();
     await res.render(__dirname + "/index" ,{ posts: q_info });
