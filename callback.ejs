@@ -8,18 +8,15 @@
     <title>Welcome to my blog</title>
 </head>
 <body>
-    <h2> <div id="shopName"><div><%= shopName %>  </h2>
-    <h3>Take Queue number: <%= posts.queue %> ?</h3>
-    <p><a class="btn btn-primary btn-lg" href="/auth" role="button">Get Queue</a></p>
-    
+    <h2> <div id="shopName"><div> </h2>
 </body>
 
 
 <script>
 
-    var res = window.location.href.split("=");
-    window.sessionStorage.setItem("shopname", res[1]);
-    //$("#shopName").text("Shop : " + res[1]);
+    //var res = window.location.href.split("=");
+   // window.sessionStorage.setItem("shopname", res[1]);
+    $("#shopName").text("Shop : " + res[1]);
 </script>
 
 </html>

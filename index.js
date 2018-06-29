@@ -29,12 +29,14 @@ app.listen(process.env.PORT || 5000, () => {
 // 認証フローを開始するためのルーター設定。
 app.get("/auth", login.auth());
 
-// ユーザーが承認したあとに実行する処理のためのルーター設定。
+
+
+app.set("view engine", "ejs");  
 app.get("/callback", login.callback(
     (req, res, next, token_response) => {
         // 認証フロー成功時
-        res.json(token_response);
-        //await res.send(getItem("lastname"));
+        //res.json(token_response);
+        res.render(__dirname + "/callback");
     },(req, res, next, error) => {
         // 認証フロー失敗時
         res.status(400).json(error);
