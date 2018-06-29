@@ -43,15 +43,43 @@ app.get("/callback", login.callback(
 
 // ファイルの末尾に追加
 //app.use(express.static(__dirname + "/public"));
-//app.set("view engine", "ejs");
-app.set('view engine', 'pug');
+
+//app.set('view engine', 'pug');
 //app.get("/", async (req, res) => {
+
+/*
 app.get('/', function (req, res) {
   res.render('index1', { title: 'Hey', message: 'Hello there!' });
 })
-/*
-app.get("/", async (req, res) => {
-  
+*/
+
+//app.get("/", async (req, res) => {
+app.set("view engine", "ejs");  
+app.get('/', function(req, res, next) {  
+   let blogPosts = [
+        {
+            title: 'Perk is for real!',
+            body: '...',
+            author: 'Aaron Larner',
+            publishedAt: new Date('2016-03-19'),
+            createdAt: new Date('2016-03-19')
+        },
+        {
+            title: 'Development continues...',
+            body: '...',
+            author: 'Aaron Larner',
+            publishedAt: new Date('2016-03-18'),
+            createdAt: new Date('2016-03-18')
+        },
+        {
+            title: 'Welcome to Perk!',
+            body: '...',
+            author: 'Aaron Larner',
+            publishedAt: new Date('2016-03-17'),
+            createdAt: new Date('2016-03-17')
+        }
+    ]
+    res.render('blog/index', { posts: blogPosts });
     //var q_info = await mongoQuery();
    //await res.render('index1', { title: 'Hey', message: 'xxx' })
    //await res.render(__dirname + "/index");
@@ -59,8 +87,8 @@ app.get("/", async (req, res) => {
    //await res.send(q_info[0].queue);
    //await res.send(q_info.queue.toString());
 // var geo = await testGeoIP("58.10.224.143");  
-})
-*/
+});
+
 
 app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
