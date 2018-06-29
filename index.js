@@ -36,7 +36,7 @@ app.get("/callback", login.callback(
     (req, res, next, token_response) => {
         // 認証フロー成功時
         //res.json(token_response);
-         res.send(token_response.access_token);
+         res.send(token_response.access_token.id_token.name);
         //res.render(__dirname + "/callback",{ userInfo: token_response} );
         
         
