@@ -2,6 +2,15 @@
 
 require("dotenv").config();
 
+
+const lineBot = require('@line/bot-sdk');
+const Client = require('@line/bot-sdk').Client;
+
+const clientBot_2 = new Client({
+  channelAccessToken:  '+Z00sQIfBQjVouvA+bFr9LpyYi5pErdfu0hejVGhtzlEmw3RJRyV0V5tohj832ykJqb2S+6mcIRvWhw7V7PDpFNWzRZlVNLg59J8PU+71rxjCqPJxfSIET6QcCoU1Vcb6UnJSMb/I5qVtwr4XpIhKQdB04t89/1O/w1cDnyilFU=',
+  channelSecret: 'cb7cdb67c6a8f02f2b7119365518108b'
+});
+
 // ライブラリのインポート。
 const express = require("express");
 const app = express();
@@ -39,7 +48,11 @@ app.get("/callback", login.callback(
         //res.json(token_response);
          //res.send(token_response.id_token.name);
         res.render(__dirname + "/callback",{ userInfo: token_response} );
-        
+        clientBot_2.pushMessage(token_response.id_token.sub, { 
+            type: "text",
+            text: "Success!!"
+            
+        });
         
         
     },(req, res, next, error) => {
@@ -66,7 +79,7 @@ app.get("/", async (req, res) => {
     //await window.sessionStorage.setItem("shopname", shopInfo);
     var q_info = await mongoQuery();
     await res.render(__dirname + "/index" ,{ posts: q_info, shopName:  shopInfo});
-    
+
     
     
 });
@@ -126,29 +139,17 @@ var MongoClient = require('mongodb').MongoClient;
 //var url = "mongodb://localhost:27017";
 var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
 
-/*
-function mongoQuery() {
-    
-    return new Promise( ( resolve, reject ) => {
-   
-     MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    //var dbo = db.db("mydb");
-    var dbo = db.db("linebookingsys");
-    var query = { name: "chanon"};
-    dbo.collection("q_info").find(query).toArray(function(err, result)
+function pushText(client, userID, returnStr,postBackStr) {
 
-    {
-    if (err) { return reject( err );}
-    else{
-        resolve(result);
-    }
-    db.close();
-    });
-    });
+   return new Promise( ( resolve, reject ) => {
+       
+      
+    resolve('gg');
+        
   });
-}    
-*/
+}
+
+
 function mongoQuery() {
     
     return new Promise( ( resolve, reject ) => {
