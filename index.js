@@ -48,7 +48,7 @@ app.set('view engine', 'pug')
 app.get("/", async (req, res) => {
     
     var q_info = await mongoQuery();
-   await res.render('index', { title: 'Hey', message: q_info.queue.toString() })
+   await res.render('index1', { title: 'Hey', message: 'xxx' })
    //await res.render(__dirname + "/index");
    //var q_info = await mongoQuery();
    //await res.send(q_info[0].queue);
