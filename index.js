@@ -56,14 +56,7 @@ app.get('/', function (req, res) {
 //app.get("/", async (req, res) => {
 
 
-app.set("view engine", "ejs");  
-app.get('/', function(req, res, next) { 
-    
-    res.render(__dirname + "/index");
-});
 
-
-/*
 app.set("view engine", "ejs");  
 app.get('/', function(req, res, next) {  
    let blogPosts = [
@@ -89,7 +82,9 @@ app.get('/', function(req, res, next) {
             createdAt: new Date('2016-03-17')
         }
     ]
-    res.render('index', { posts: blogPosts });
+    
+    
+    res.render(__dirname + "/index" ,{ posts: blogPosts });
     //var q_info = await mongoQuery();
    //await res.render('index1', { title: 'Hey', message: 'xxx' })
    //await res.render(__dirname + "/index");
@@ -104,7 +99,7 @@ app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
 });
 
-*/
+
 
 
 
