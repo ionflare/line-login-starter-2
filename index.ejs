@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <title>Welcome to my blog</title>
 </head>
 <body>
+    <h4> <div id="shopName"><div> </h4>
+    <h3>Take Queue number: <%= posts.queue %> ?</h3>
+    <p><a class="btn btn-primary btn-lg" href="/auth" role="button">Line Login</a></p>
     
-    <h3>Queue : </h3>
-     <h2><%= posts.name %></h2>
-    <p><%= posts.queue %></p>
 </body>
+
+
+<script>
+
+    var res = window.location.href.split("=");
+    $("p").text("Shop : " + res[1]);
+</script>
+
 </html>
