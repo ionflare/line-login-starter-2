@@ -45,10 +45,10 @@ app.get("/callback", login.callback(
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.get("/", async (req, res) => {
-   //await res.render(__dirname + "/index");
-   var q_info = await mongoQuery();
+   await res.render(__dirname + "/index");
+   //var q_info = await mongoQuery();
    //await res.send(q_info[0].queue);
-   await res.send(q_info.queue.toString());
+   //await res.send(q_info.queue.toString());
 // var geo = await testGeoIP("58.10.224.143");  
 })
 
