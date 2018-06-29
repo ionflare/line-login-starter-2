@@ -18,7 +18,8 @@ app.use(session(session_options));
 const login = new line_login({
     channel_id: "1590015276",
     channel_secret: "2fb6dfcbe678318000471b205f84829c",
-    callback_url: "https://line-login-starter-2.herokuapp.com/callback"
+    callback_url: "https://line-login-starter-2.herokuapp.com/callback",
+    prompt: "consent"
 });
 
 // サーバー起動設定。
