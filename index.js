@@ -34,6 +34,7 @@ app.get("/callback", login.callback(
     (req, res, next, token_response) => {
         // 認証フロー成功時
         res.json(token_response);
+        //await res.send(getItem("lastname"));
     },(req, res, next, error) => {
         // 認証フロー失敗時
         res.status(400).json(error);
@@ -53,9 +54,9 @@ app.get('/', function (req, res) {
 })
 */
 app.set("view engine", "ejs");  
-app.get("/index", async (req, res) => {
+app.get("/", async (req, res) => {
     var shopInfo = req.param('shop');
-    await window.sessionStorage.setItem("shopname", shopInfo);
+    //await window.sessionStorage.setItem("shopname", shopInfo);
     var q_info = await mongoQuery();
     await res.render(__dirname + "/index" ,{ posts: q_info, shopName:  shopInfo});
     
