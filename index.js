@@ -35,8 +35,11 @@ app.set("view engine", "ejs");
 app.get("/callback", login.callback(
     (req, res, next, token_response) => {
         // 認証フロー成功時
-        //res.json(token_response);
-        res.render(__dirname + "/callback");
+        res.json(token_response);
+        //res.render(__dirname + "/callback");
+        
+        
+        
     },(req, res, next, error) => {
         // 認証フロー失敗時
         res.status(400).json(error);
