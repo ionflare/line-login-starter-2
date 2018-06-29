@@ -42,7 +42,7 @@ app.get("/callback", login.callback(
 
 
 // ファイルの末尾に追加
-app.use(express.static(__dirname + "/public"));
+//app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.get("/", async (req, res) => {
    await res.render(__dirname + "/index");
@@ -63,7 +63,7 @@ app.get('/sitemap',function(req,res){
 
 
 
-var MongoClient = require('mongodb').MongoClient
+var MongoClient = require('mongodb').MongoClient;
 //var url = "mongodb://localhost:27017";
 var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
 

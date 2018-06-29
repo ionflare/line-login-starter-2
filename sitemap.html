@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
   <div style="margin:100px;">
@@ -31,45 +30,15 @@
       <p><a class="btn btn-primary btn-lg" href="/auth" role="button">Line Login</a></p>
     </div>
   </div>
-   <h3><div id="queInfo"></div>xxxxx</h3> 
-   
-<script type="text/javascript">
-
-  
-    var MongoClient = require('mongodb').MongoClient;
-    //var url = "mongodb://localhost:27017";
-   var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
-
-   
-  
-    var MongoClient = require('mongodb').MongoClient
-   var url = "mongodb://chanon:chanon1234@ds121341.mlab.com:21341/linebookingsys";
+      <% for(let i = 0; i < 10; i++) { %>
+        <article>
+            <h2><%= i %></h1>
+            <p><%= i %></p>
+        </article>
+    <% } %>
   
   
-   MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    //var dbo = db.db("mydb");
-    var dbo = db.db("linebookingsys");
-    
-    
-       dbo.collection("q_info").findOne({}, function(err, result) {
-        if(!err)
-        {
-          $("#queInfo").text("current queue : " + result.queInfo.toString());
-        }
-        else
-        {
-          $("#queInfo").text("error occured");
-        }
-        
-         db.close();
-    });
-    
-    
-
-   });
   
-  </script>
   
   
 </body>
