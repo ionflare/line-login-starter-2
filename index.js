@@ -44,18 +44,23 @@ app.get("/callback", login.callback(
 // ファイルの末尾に追加
 //app.use(express.static(__dirname + "/public"));
 //app.set("view engine", "ejs");
-app.set('view engine', 'pug')
+app.set('view engine', 'pug');
+//app.get("/", async (req, res) => {
+app.get('/', function (req, res) {
+  res.render('index1', { title: 'Hey', message: 'Hello there!' });
+})
+/*
 app.get("/", async (req, res) => {
-    
-    var q_info = await mongoQuery();
-   await res.render('index1', { title: 'Hey', message: 'xxx' })
+  
+    //var q_info = await mongoQuery();
+   //await res.render('index1', { title: 'Hey', message: 'xxx' })
    //await res.render(__dirname + "/index");
    //var q_info = await mongoQuery();
    //await res.send(q_info[0].queue);
    //await res.send(q_info.queue.toString());
 // var geo = await testGeoIP("58.10.224.143");  
 })
-
+*/
 
 app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
