@@ -79,7 +79,7 @@ app.get('/', function(req, res, next) {
             createdAt: new Date('2016-03-17')
         }
     ]
-    res.render('blog/index', { posts: blogPosts });
+    res.render('index', { posts: blogPosts });
     //var q_info = await mongoQuery();
    //await res.render('index1', { title: 'Hey', message: 'xxx' })
    //await res.render(__dirname + "/index");
