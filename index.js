@@ -54,6 +54,16 @@ app.get('/', function (req, res) {
 */
 
 //app.get("/", async (req, res) => {
+
+
+app.set("view engine", "ejs");  
+app.get('/', function(req, res, next) { 
+    
+    res.render(__dirname + "/index");
+});
+
+
+/*
 app.set("view engine", "ejs");  
 app.get('/', function(req, res, next) {  
    let blogPosts = [
@@ -94,7 +104,7 @@ app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
 });
 
-
+*/
 
 
 
