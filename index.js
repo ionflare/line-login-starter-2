@@ -43,9 +43,13 @@ app.get("/callback", login.callback(
 
 // ファイルの末尾に追加
 //app.use(express.static(__dirname + "/public"));
-app.set("view engine", "ejs");
+//app.set("view engine", "ejs");
+app.set('view engine', 'pug')
 app.get("/", async (req, res) => {
-   await res.render(__dirname + "/index");
+    
+    var q_info = await mongoQuery();
+   await res.render('index', { title: 'Hey', message: q_info.queue.toString() })
+   //await res.render(__dirname + "/index");
    //var q_info = await mongoQuery();
    //await res.send(q_info[0].queue);
    //await res.send(q_info.queue.toString());
