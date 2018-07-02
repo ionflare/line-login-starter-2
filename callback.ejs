@@ -27,15 +27,15 @@
      
    
    
-   $.ajax({
-    method: “POST”,
-     url: "https://line-login-starter-2.herokuapp.com/instert_Q_info,
-     data: { name: “John”, location: “Boston” }
-    })
-         .done(function() {
-         alert( “Data Saved: “);
-    });
-   
+
+    $.ajax({
+      method: "POST",
+      url: "https://line-login-starter-2.herokuapp.com/instert_Q_info,
+      data: { name: "John", location: "Boston" }
+        })
+      .done(function( msg ) {
+        alert( "Data Saved: " + msg );
+      });
      
      
      
