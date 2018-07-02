@@ -140,7 +140,7 @@ app.get('/sitemap',function(req,res){
 
 app.post('/insert_Q_info',function(req,res){
     
-    res.send(req.body[0].name);
+    res.send(req.body);
   //res.send({ some: JSON.stringify({response:'json'}) });
   //res.sendFile(__dirname+'/sitemap.html');
 });
