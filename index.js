@@ -24,7 +24,7 @@ const session_options = {
     saveUninitialized: false
 }
 app.use(session(session_options));
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //app.use(express.bodyParser());
 
@@ -139,15 +139,15 @@ app.get('/sitemap',function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    //var latest_Que = await getLatest_Que(parseInt(req.body.qNum, 10));
+    var latest_Que = await getLatest_Que(parseInt(req.body.qNum, 10));
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
         
     }
     */
-   // await res.send(latest_Que.length());
-    await res.send(req.body.qNum);
+    await res.send(latest_Que.length());
+    //await res.send(req.body.qNum);
 
 });
 
@@ -208,7 +208,7 @@ function  getLatest_Que(input_que) {
     
    // db.products.find( { qty: { $gte: 25 } } )
     //var query = { address: "Park Lane 38" };
-    var query = { "queue": { $eq: input_que }};
+    var query = { "queue": { $gte: input_que }};
     dbo.collection("q_info").find(query).toArray(function(err, result) {
         
        if ( err )
