@@ -136,17 +136,11 @@ app.get('/sitemap',function(req,res){
 });
 
 
+app.post("/insert_Q_info", async (req, res) => {
 
+    await res.send(req.body);
 
-app.post('/insert_Q_info',function(req,res){
-    
-    res.send(req.body);
-    
-    
-  //res.send({ some: JSON.stringify({response:'json'}) });
-  //res.sendFile(__dirname+'/sitemap.html');
 });
-
 
 
 
@@ -193,3 +187,29 @@ function mongoQuery() {
   
 }    
  
+function  InsertMongo() {
+    
+    return new Promise( ( resolve, reject ) => {
+   
+     MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //var dbo = db.db("mydb");
+    var dbo = db.db("linebookingsys");
+    
+    dbo.collection("q_info").findOne({}, function(err, result) {
+      
+       if ( err )
+       return reject( err );
+        else
+                {
+                 resolve(result);
+                }
+        //if (err) throw err;
+        //console.log(result.name + " " +result.address);
+        db.close();
+        });
+    });
+   
+  });
+  
+}    
