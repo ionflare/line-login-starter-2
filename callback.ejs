@@ -24,7 +24,7 @@
      
    
    
-
+    var gg="";
     $.ajax({
       method: "POST",
       url: "https://line-login-starter-2.herokuapp.com/insert_Q_info",
@@ -33,11 +33,11 @@
       dataType: "json"
         })
       .done(function( msg ) {
-          var gg = msg;
+          gg = msg;
           
           
           
-        //alert( "Data Saved: " + msg );
+        alert( "Data Saved: " + msg );
       });
      
      
