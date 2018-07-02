@@ -208,7 +208,7 @@ function  getLatest_Que(input_que) {
     
    // db.products.find( { qty: { $gte: 25 } } )
     //var query = { address: "Park Lane 38" };
-    var query = { "queue": { $gte: input_que }};
+    var query = { queue: { $gte: input_que }};
     dbo.collection("q_info").find(query).toArray(function(err, result) {
         
        if ( err )
