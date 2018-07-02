@@ -137,8 +137,14 @@ app.get('/sitemap',function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-
-    await res.send(req.body);
+    var latest_Que = await getLatest_Que(parseInt(req.body.qNum, 10));
+    /*
+    if (latest_Que >=  parseInt(req.body.qNum, 10))
+    {
+        
+    }
+    */
+    await res.send(latest_Que.length());
 
 });
 
@@ -187,7 +193,7 @@ function mongoQuery() {
   
 }    
  
-function  InsertMongo() {
+function  getLatest_Que(input_que) {
     
     return new Promise( ( resolve, reject ) => {
    
@@ -196,8 +202,12 @@ function  InsertMongo() {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne({}, function(err, result) {
-      
+    
+   // db.products.find( { qty: { $gte: 25 } } )
+    //var query = { address: "Park Lane 38" };
+    var query = { "queue": { $eq: input_que }};
+    dbo.collection("q_info").find(query).toArray(function(err, result) {
+        
        if ( err )
        return reject( err );
         else
@@ -213,3 +223,4 @@ function  InsertMongo() {
   });
   
 }    
+ 
