@@ -205,13 +205,8 @@ function  getLatest_Que(input_que) {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    
-   // db.products.find( { qty: { $gte: 25 } } )
-    //var query = { address: "Park Lane 38" };
-    //var query = { queue: { $gte: input_que }};
-    dbo.collection("q_info").findOne({ }, function(err, result) {
-    //dbo.collection("q_info").find(query).toArray(function(err, result) {
-        
+    dbo.collection("q_info").findOne({}, function(err, result) {
+      
        if ( err )
        return reject( err );
         else
@@ -227,4 +222,3 @@ function  getLatest_Que(input_que) {
   });
   
 }    
- 
