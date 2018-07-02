@@ -101,10 +101,11 @@ app.get('/sitemap',function(req,res){
 app.post('/insert_Q_info', function(req,res){
   //res.sendFile(__dirname+'/sitemap.html');
   //res.send("Yeah");
-  var obj = JSON.parse(req.body);
-  if (obj.name == "chanon") {
-      res.send(req.body);
-  }
+  res.send("Yeah");
+  //var obj = JSON.parse(req.body);
+  //if (obj.name == "chanon") {
+    //  res.send(req.body);
+  //}
   
 });
 
