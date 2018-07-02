@@ -100,7 +100,7 @@ app.get('/sitemap',function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    let latest_Que = await getLatest_Que();
+    var latest_Que = await getLatest_Que();
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
