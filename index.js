@@ -139,15 +139,15 @@ app.get('/sitemap',function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    //var latest_Que = await getLatest_Que(parseInt(req.body.qNum, 10));
+    var latest_Que = await getLatest_Que(req.body.qNum);
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
         
     }
     */
-    //await res.send(latest_Que.length());
-    await res.send(parseInt(req.body.qNum, 10));
+    await res.send(latest_Que.length());
+    //await res.send(parseInt(req.body.qNum, 10));
 
 });
 
