@@ -107,7 +107,7 @@ app.post("/insert_Q_info", async (req, res) => {
         
     }
     */
-    await res.send(latest_Que);
+    await res.send(latest_Que.name);
     //await res.send(parseInt(req.body.qNum, 10));
 
 });
