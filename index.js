@@ -97,7 +97,7 @@ app.get("/", async (req, res) => {
 app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
 });
-
+/*
 app.post('/insert_Q_info', function(req,res){
   //res.sendFile(__dirname+'/sitemap.html');
   //res.send("Yeah");
@@ -108,12 +108,12 @@ app.post('/insert_Q_info', function(req,res){
   //}
   
 });
+*/
 
 
-/*
 app.post("/insert_Q_info", async (req, res) => {
     //var latest_Que = await getLatest_Que();
-    /*
+    
     if (req.body.qNum == 1) {
         await res.send("Yeah");
     }
@@ -127,9 +127,6 @@ app.post("/insert_Q_info", async (req, res) => {
 
 
 });
-*/
-
-
 
 var MongoClient = require('mongodb').MongoClient;
 //var url = "mongodb://localhost:27017";
