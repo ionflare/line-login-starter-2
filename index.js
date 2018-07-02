@@ -112,10 +112,10 @@ app.post('/insert_Q_info', function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    //var latest_Que = await getLatest_Que();
+    var latest_Que = await getLatest_Que();
     
     if (req.body.qNum == 1) {
-        await res.send("Yeah");
+        await res.send(latest_Que.name);
     }
     else 
     {
