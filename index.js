@@ -15,6 +15,7 @@ const clientBot_2 = new Client({
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
+
 const line_login = require("line-login");
 const session = require("express-session");
 const session_options = {
@@ -23,6 +24,7 @@ const session_options = {
     saveUninitialized: false
 }
 app.use(session(session_options));
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 //app.use(express.bodyParser());
 
@@ -137,14 +139,15 @@ app.get('/sitemap',function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    var latest_Que = await getLatest_Que(parseInt(req.body.qNum, 10));
+    //var latest_Que = await getLatest_Que(parseInt(req.body.qNum, 10));
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
         
     }
     */
-    await res.send(latest_Que.length());
+   // await res.send(latest_Que.length());
+    await res.send(req.body.qNum);
 
 });
 
