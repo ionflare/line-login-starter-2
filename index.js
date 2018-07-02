@@ -14,6 +14,7 @@ const clientBot_2 = new Client({
 // ライブラリのインポート。
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
 const line_login = require("line-login");
 const session = require("express-session");
 const session_options = {
@@ -22,6 +23,7 @@ const session_options = {
     saveUninitialized: false
 }
 app.use(session(session_options));
+app.use(bodyParser.json());
 //app.use(express.bodyParser());
 
 // 認証の設定。
@@ -36,6 +38,9 @@ const login = new line_login({
 app.listen(process.env.PORT || 5000, () => {
     console.log(`server is listening to ${process.env.PORT || 5000}...`);
 });
+
+
+
 
 // 認証フローを開始するためのルーター設定。
 app.get("/auth", login.auth());
@@ -135,7 +140,7 @@ app.get('/sitemap',function(req,res){
 
 app.post('/insert_Q_info',function(req,res){
     
-    res.send("555");
+    res.send(req.body);
   //res.send({ some: JSON.stringify({response:'json'}) });
   //res.sendFile(__dirname+'/sitemap.html');
 });
