@@ -134,7 +134,10 @@ app.get('/sitemap',function(req,res){
 
 
 app.post('/instert_Q_info',function(req,res){
-  res.sendFile(__dirname+'/sitemap.html');
+    
+    res.send("555");
+  //res.send({ some: JSON.stringify({response:'json'}) });
+  //res.sendFile(__dirname+'/sitemap.html');
 });
 
 
