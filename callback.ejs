@@ -23,7 +23,7 @@
      $("#qNum").text(ses_q);
      
    
-   
+    var gg="";
    /*
     var gg="";
     $.ajax({
@@ -51,7 +51,8 @@
             return true;
         },
         success: function(msg){ 
-            alert( "Data Saved: " + msg );
+             gg = msg;
+            alert( "Data Saved: " + msg.name );
         }
      });
      
