@@ -24,6 +24,17 @@
     var ses_q =  window.sessionStorage.getItem("qNum");
     
      $("#qNum").text(ses_q);
+     
+   
+    $.ajax({url: "https://line-login-starter-2.herokuapp.com/instert_Q_info", success: function(result){
+        //$("#div1").html(result);
+        alert("xxx");
+        
+    }});
+     
+     
+     
+     
 </script>
 
 </html>

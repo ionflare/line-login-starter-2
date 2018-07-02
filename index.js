@@ -22,6 +22,7 @@ const session_options = {
     saveUninitialized: false
 }
 app.use(session(session_options));
+app.use(express.bodyParser());
 
 // 認証の設定。
 const login = new line_login({
@@ -130,6 +131,11 @@ app.get('/sitemap',function(req,res){
 });
 
 
+
+
+app.post('/instert_Q_info',function(req,res){
+  res.sendFile(__dirname+'/sitemap.html');
+});
 
 
 
