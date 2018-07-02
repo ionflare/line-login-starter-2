@@ -107,7 +107,13 @@ app.post("/insert_Q_info", async (req, res) => {
         
     }
     */
-    await res.send(latest_Que.name);
+    if (latest_Que.name!=null) {
+        await res.send("Yeah");
+    }
+    else
+    {
+        await res.send("NAy");
+    }
     //await res.send(parseInt(req.body.qNum, 10));
 
 });
