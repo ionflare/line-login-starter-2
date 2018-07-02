@@ -110,7 +110,7 @@ app.post("/insert_Q_info", async (req, res) => {
         await res.send("NAy");
     }
     */
-    await res.send("NAy");
+    await res.send(latest_Que);
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
