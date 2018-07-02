@@ -98,9 +98,10 @@ app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
 });
 
-app.post("/insert_Q_info", function(req,res){
+app.post('/insert_Q_info', function(req,res){
   //res.sendFile(__dirname+'/sitemap.html');
-  res.send("Yeah");
+  //res.send("Yeah");
+  res.send('POST request to the homepage');
 });
 
 
