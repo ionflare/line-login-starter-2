@@ -101,13 +101,16 @@ app.get('/sitemap',function(req,res){
 
 app.post("/insert_Q_info", async (req, res) => {
     var latest_Que = await getLatest_Que();
+    /*
     if (req.body.qNum == 1) {
         await res.send("Yeah");
     }
-    else
+    else 
     {
         await res.send("NAy");
     }
+    */
+    await res.send("NAy");
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
