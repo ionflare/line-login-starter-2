@@ -101,12 +101,27 @@ app.get('/sitemap',function(req,res){
 
 app.post("/insert_Q_info", async (req, res) => {
     var latest_Que = await getLatest_Que();
+    if (req.body.qNum == 1) {
+        await res.send("Yeah");
+    }
+    else
+    {
+        await res.send("NAy");
+    }
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
         
     }
+     if (latest_Que.name!=null) {
+        await res.send("Yeah");
+    }
+    else
+    {
+        await res.send("NAy");
+    }
     */
+    /*
     if (latest_Que.name!=null) {
         await res.send("Yeah");
     }
@@ -114,6 +129,7 @@ app.post("/insert_Q_info", async (req, res) => {
     {
         await res.send("NAy");
     }
+    */
     //await res.send(parseInt(req.body.qNum, 10));
 
 });
