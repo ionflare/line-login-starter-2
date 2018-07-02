@@ -93,45 +93,6 @@ app.get("/", async (req, res) => {
 });
 
 
-/*
-app.set("view engine", "ejs");  
-app.get('/', function(req, res, next) {  
-   let blogPosts = [
-        {
-            title: 'Perk is for real!',
-            body: '...',
-            author: 'Aaron Larner',
-            publishedAt: new Date('2016-03-19'),
-            createdAt: new Date('2016-03-19')
-        },
-        {
-            title: 'Development continues...',
-            body: '...',
-            author: 'Aaron Larner',
-            publishedAt: new Date('2016-03-18'),
-            createdAt: new Date('2016-03-18')
-        },
-        {
-            title: 'Welcome to Perk!',
-            body: '...',
-            author: 'Aaron Larner',
-            publishedAt: new Date('2016-03-17'),
-            createdAt: new Date('2016-03-17')
-        }
-    ]
-    
-    
-    res.render(__dirname + "/index" ,{ posts: blogPosts });
-    //var q_info = await mongoQuery();
-   //await res.render('index1', { title: 'Hey', message: 'xxx' })
-   //await res.render(__dirname + "/index");
-   //var q_info = await mongoQuery();
-   //await res.send(q_info[0].queue);
-   //await res.send(q_info.queue.toString());
-// var geo = await testGeoIP("58.10.224.143");  
-});
-*/
-
 
 app.get('/sitemap',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
@@ -139,14 +100,14 @@ app.get('/sitemap',function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    var latest_Que = await getLatest_Que(req.body.qNum);
+    var latest_Que = await getLatest_Que();
     /*
     if (latest_Que >=  parseInt(req.body.qNum, 10))
     {
         
     }
     */
-    await res.send(latest_Que.name);
+    await res.send(latest_Que);
     //await res.send(parseInt(req.body.qNum, 10));
 
 });
@@ -196,7 +157,7 @@ function mongoQuery() {
   
 }    
  
-function  getLatest_Que(input_que) {
+function  getLatest_Que() {
     
     return new Promise( ( resolve, reject ) => {
    
