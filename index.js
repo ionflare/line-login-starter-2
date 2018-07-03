@@ -134,7 +134,7 @@ app.post("/insert_Q_info", async (req, res) => {
     var latest_Que = await getLatest_Que(req.body);
     
     if (latest_Que == "failed") {
-        await res.send("failde");
+        await res.send("failed");
     }
     else
     {
@@ -230,18 +230,17 @@ function  getLatest_Que(input_Q) {
     
    dbo.collection("q_info").find( { $and: [ { shopName: input_Q.shop }, { queue: { $gte:   inp_q   } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
-      
-       if ( err )
-       {
-          
-           reject( "failed" );}
-       
-       else
-       {
-                 resolve(result);
-       }
-        
-         db.close();
+         if ( err )
+          {
+               db.close();
+              reject( "failed" );
+          }
+                
+           else
+          {
+               db.close();
+              resolve(result);
+            }
         });
     });
    
