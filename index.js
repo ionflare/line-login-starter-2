@@ -133,9 +133,16 @@ app.post('/insert_Q_info', function(req,res){
 app.post("/insert_Q_info", async (req, res) => {
     var latest_Que = await getLatest_Que(req.body);
     
-    if (latest_Que == "failed" || latest_Que != null) {
+    if (latest_Que == "failed") {
+        await res.send("failde");
+    }
+    else
+    {
         await res.send(latest_Que.queue);
     }
+    
+    
+    /*
     else 
     {
         var resultInsert = await Insert_Que(req.body);
@@ -161,9 +168,8 @@ app.post("/insert_Q_info", async (req, res) => {
         }
        
     }
-    
-    //await res.send(latest_Que);
-    //await res.send("KUY");
+    */
+
 
 
 });
