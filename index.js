@@ -131,14 +131,23 @@ app.post('/insert_Q_info', function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    var latest_Que = await getLatest_Que(req.body);
+    var lat_Que = await getLatest_Que(req.body);
     
-    if (latest_Que == "failed") {
+    if (lat_Que == "failed") {
         await res.send("failed");
     }
     else
     {
-        await res.send(latest_Que.shopName);
+
+        if(lat_Que[0] == null)
+        {
+            await res.send(lat_Que.shopName);
+        }
+        else
+        {
+            await res.send(lat_Que.shopName);
+        }
+        
     }
     
     
@@ -227,10 +236,11 @@ function  getLatest_Que(input_Q) {
     var dbo = db.db("linebookingsys");
     let inp_q = parseInt(input_Q.qNum); 
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
-    dbo.collection("q_info").find({ }, function(err, result)  {
+    //dbo.collection("q_info").find({}, function(err, result)  {
     //dbo.collection("q_info").find( { $and: [ { shopName: { $eq: input_Q.shop }  }, { queue: { $gte:   inp_q   } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
-         if ( err )
+     dbo.collection("q_info").find({ $and: [ { shopName: { $eq: input_Q.shop }  }, { queue: { $gte:   1   } } ] }).toArray( function(err, result) {
+          if ( err )
           {
                db.close();
               reject( "failed" );
@@ -239,14 +249,14 @@ function  getLatest_Que(input_Q) {
            else
           {
                db.close();
-              resolve(result);
+                 resolve(result);
             }
-        });
+        }); 
     });
    
   });
   
-}    
+}   
 
 function  Insert_Que(input_Q) {
     
