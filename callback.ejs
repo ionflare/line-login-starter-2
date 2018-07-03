@@ -6,7 +6,7 @@
 </head>
 <body>
     <h3><div id="UserName"><%= userInfo.id_token.name %></div></h3> 
-    <h3><div id="usreLineCode"><%= userInfo.id_token.sub %></div></h3> 
+    <h3><div id="userLineCode"><%= userInfo.id_token.sub %></div></h3> 
     <h3>Took Queue number: </h3>
     <h3><div id ="qNum"></div></h3>
     <h2> <div id="shopName"><div> </h2>
@@ -44,7 +44,7 @@
        $.ajax({
       method: "POST",
       url: "https://line-login-starter-2.herokuapp.com/insert_Q_info",
-      data: JSON.stringify({  "name": $("#UserName").text(), "shop": ses_shop, "qNum": $("#qNum").text(), "lineCode": $("#usreLineCode").text()  }),
+      data: JSON.stringify({  "name": $("#UserName").text(), "shop": ses_shop, "qNum": $("#qNum").text(), "lineCode": $("#userLineCode").text()  }),
       contentType: "application/json; charset=utf-8",
       //dataType: "json",
       

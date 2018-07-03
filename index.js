@@ -144,19 +144,13 @@ app.post("/insert_Q_info", async (req, res) => {
             var resultInsert = await Insert_Que(req.body);
              if (resultInsert == "good")
             {
-                if(resultInsert != null)
-                {
-                    await res.send("Failed to Booking queue(Duplicate).");
-                }
-                else
-                {
+                
                     clientBot_2.pushMessage(req.body.lineCode, { 
                     type: "text",
                     text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"." 
                     });
                     await res.send("Successfully booking queue.");
-                }
-           }
+            }
             else
             {
                 await res.send("Error occurred while inserting queue data into Mlab.");
@@ -170,33 +164,7 @@ app.post("/insert_Q_info", async (req, res) => {
     }
     
     
-    /*
-    else 
-    {
-        var resultInsert = await Insert_Que(req.body);
-        if (resultInsert == "good")
-        {
-            if(resultInsert != null)
-            {
-                await res.send("Failed to Booking queue(Duplicate).");
-            }
-            else
-            {
-                clientBot_2.pushMessage(req.body.lineCode, { 
-                type: "text",
-                text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"." 
-                });
-                await res.send("Successfully booking queue.");
-            }
-           
-        }
-        else
-        {
-             await res.send("Error occurred while inserting queue data into Mlab.");
-        }
-       
-    }
-    */
+ 
 
 
 
@@ -288,7 +256,7 @@ function  Insert_Que(input_Q) {
     var dbo = db.db("linebookingsys");
     
     
-    dbo.collection("q_info").insertOne( { shopName: input_Q.shop, queue: parseInt(input_Q.qNum), name:  input_Q.name, Line_code: parseInt(input_Q.lineCode) }, function(err, result)  {
+    dbo.collection("q_info").insertOne( { shopName: input_Q.shop, queue: parseInt(input_Q.qNum), name:  input_Q.name, Line_code: input_Q.lineCode }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
