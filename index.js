@@ -83,15 +83,15 @@ app.get("/", async (req, res) => {
     //await window.sessionStorage.setItem("shopname", shopInfo);
      
     var q_info = await mongoQuery(shopInfo);
-   
-    if(q_info == null)
+    if(q_info != "failed")
     {
-
-        await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
+        if(q_info[0] == null)
+        {
+             await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
         
-    }
-    else
-    {
+        }
+        else
+        {
         var MaxQNum =0;
         for(var qIdx =0; qIdx < q_info.length(); qIdx++ )
         {
@@ -102,7 +102,9 @@ app.get("/", async (req, res) => {
         }
         var qNum =  await MaxQNum + 1;
         await res.render(__dirname + "/index" ,{ newQ_Info: qNum, shopName:  shopInfo});
+        }
     }
+    
     
 
     
@@ -194,7 +196,7 @@ function mongoQuery(inputShop) {
           if ( err )
           {
                db.close();
-            return reject( err );
+              reject( "failed" );
           }
                 
            else
