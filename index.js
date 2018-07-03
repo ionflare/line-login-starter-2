@@ -92,7 +92,7 @@ app.get("/", async (req, res) => {
     }
     else
     {
-        await res.render(__dirname + "/index" ,{ newQ_Info: q_info.queue+1, shopName:  shopInfo});
+        await res.render(__dirname + "/index" ,{ newQ_Info: q_info.queue, shopName:  shopInfo});
     }
     
 
