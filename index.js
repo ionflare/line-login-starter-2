@@ -138,7 +138,7 @@ app.post("/insert_Q_info", async (req, res) => {
     }
     else
     {
-        await res.send(latest_Que.queue);
+        await res.send(latest_Que.shopName);
     }
     
     
