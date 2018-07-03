@@ -87,7 +87,7 @@ app.get("/", async (req, res) => {
     {
         if(q_info[0] == null)
         {
-             await res.render(__dirname + "/index" ,{ newQ_Info: 2, shopName:  shopInfo});
+             await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
         
         }
         else
@@ -192,7 +192,7 @@ function mongoQuery(inputShop) {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").find({ shop: { $eq: inputShop } }).toArray( function(err, result) {
+    dbo.collection("q_info").find({ shopName: { $eq: inputShop } }).toArray( function(err, result) {
           if ( err )
           {
                db.close();
@@ -222,7 +222,7 @@ function  getLatest_Que(input_Q) {
     
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
     
-   dbo.collection("q_info").find( { $and: [ { shop: { $eq: input_Q.shop } }, { queue: { $gte: parseInt(input_Q.qNum) } } ] }, function(err, result)  {
+   dbo.collection("q_info").find( { $and: [ { shopName: { $eq: input_Q.shop } }, { queue: { $gte: parseInt(input_Q.qNum) } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
