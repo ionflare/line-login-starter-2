@@ -84,7 +84,7 @@ app.get("/", async (req, res) => {
      
     var q_info = await mongoQuery(shopInfo);
    
-    if(q_info[0] == null)
+    if(q_info == null)
     {
 
         await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
@@ -92,7 +92,7 @@ app.get("/", async (req, res) => {
     }
     else
     {
-        var MaxQNum =0;
+        let MaxQNum =0;
         for(let qIdx =0; qIdx < q_info.length(); qIdx++ )
         {
             if(MaxQNum <  parseInt(q_info[qIdx].queue))
