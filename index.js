@@ -114,12 +114,12 @@ app.post('/insert_Q_info', function(req,res){
 app.post("/insert_Q_info", async (req, res) => {
     var latest_Que = await getLatest_Que();
     
-    if (req.body.qNum == 1) {
-        await res.send(latest_Que.name);
+    if (latest_Que != null) {
+        await res.send("Duplicate Q");
     }
     else 
     {
-        await res.send("NAy");
+        await res.send("This Q is good to go");
     }
     
     //await res.send(latest_Que);
@@ -170,7 +170,7 @@ function mongoQuery() {
   
 }    
  
-function  getLatest_Que() {
+function  getLatest_Que(input_Q) {
     
     return new Promise( ( resolve, reject ) => {
    
@@ -179,7 +179,7 @@ function  getLatest_Que() {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne({}, function(err, result) {
+    dbo.collection("q_info").findOne( { queue: { $gte: input_Q } } , function(err, result) {
       
        if ( err )
        return reject( err );
