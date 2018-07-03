@@ -141,11 +141,11 @@ app.post("/insert_Q_info", async (req, res) => {
 
         if(lat_Que[0] == null)
         {
-            await res.send(lat_Que.shopName);
+            await res.send(lat_Que[0].shopName);
         }
         else
         {
-            await res.send(lat_Que.shopName);
+            await res.send(lat_Que[0].shopName);
         }
         
     }
