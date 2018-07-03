@@ -186,11 +186,13 @@ function mongoQuery(inputShop) {
     dbo.collection("q_info").find({ shop: { $eq: inputShop } }).toArray( function(err, result) {
           if ( err )
           {
+               db.close();
             return reject( err );
           }
                 
            else
           {
+               db.close();
                  resolve(result);
             }
         }); 
