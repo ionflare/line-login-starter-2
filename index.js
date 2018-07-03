@@ -219,24 +219,23 @@ function  getLatest_Que(input_Q) {
     if (err) throw err;
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
-    
+    let inp_q = parseInt(input_Q.qNum); 
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
     
-   dbo.collection("q_info").find( { $and: [ { shopName: input_Q.shop }, { queue: { $gte:   parseInt(input_Q.qNum)    } } ] }, function(err, result)  {
+   dbo.collection("q_info").find( { $and: [ { shopName: input_Q.shop }, { queue: { $gte:   inp_q   } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
        {
-           db.close();
+          
            reject( "failed" );}
        
        else
        {
-           db.close();
                  resolve(result);
        }
         
-        
+         db.close();
         });
     });
    
