@@ -87,7 +87,7 @@ app.get("/", async (req, res) => {
     {
         if(q_info[0] == null)
         {
-             await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
+             await res.render(__dirname + "/index" ,{ newQ_Info: 2, shopName:  shopInfo});
         
         }
         else
