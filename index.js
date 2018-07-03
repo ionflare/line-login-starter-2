@@ -82,9 +82,9 @@ app.get("/", async (req, res) => {
     var shopInfo = req.param('shop');
     //await window.sessionStorage.setItem("shopname", shopInfo);
      var newQueue =0;
-    var q_info = await mongoQuery();
+    var q_info = await mongoQuery(shopInfo);
    
-    if(q_info == null)
+    if(q_info[0] == null)
     {
 
         await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
@@ -92,7 +92,15 @@ app.get("/", async (req, res) => {
     }
     else
     {
-        let qNum = parseInt(q_info.queue) + 1;
+        let MaxQNum =0;
+        for(let qIdx =0; qIdx < q_info.length(); qIdx++ )
+        {
+            if(MaxQNum <  parseInt(q_info[qIdx].queue))
+            {
+                MaxQNum = parseInt(q_info[qIdx].queue);
+            }
+        }
+        let qNum = MaxQNum + 1;
         await res.render(__dirname + "/index" ,{ newQ_Info: qNum, shopName:  shopInfo});
     }
     
@@ -166,7 +174,7 @@ function pushText(client, userID, returnStr,postBackStr) {
 }
 
 
-function mongoQuery() {
+function mongoQuery(inputShop) {
     
     return new Promise( ( resolve, reject ) => {
    
@@ -175,7 +183,7 @@ function mongoQuery() {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne({}, function(err, result) {
+    dbo.collection("q_info").findOne({ queue: { $eq: inputShop } }.toArray, function(err, result) {
       
        if ( err )
        return reject( err );
@@ -232,7 +240,7 @@ function  Insert_Que(input_Q) {
     var dbo = db.db("linebookingsys");
     
     
-    dbo.collection("q_info").insertOne( { queue: parseInt(input_Q.qNum), name:  input_Q.name, Line_code: parseInt(input_Q.lineCode) }, function(err, result)  {
+    dbo.collection("q_info").insertOne( { shopName: input_Q.shop, queue: parseInt(input_Q.qNum), name:  input_Q.name, Line_code: parseInt(input_Q.lineCode) }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
