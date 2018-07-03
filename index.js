@@ -174,12 +174,13 @@ function  getLatest_Que(input_Q) {
     
     return new Promise( ( resolve, reject ) => {
    
+   let in_q = parseInt(input_Q);
      MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne( { queue: { $gte: 1 } } , function(err, result) {
+    dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
        return reject( err );
