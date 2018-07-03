@@ -92,15 +92,15 @@ app.get("/", async (req, res) => {
     }
     else
     {
-        let MaxQNum =0;
-        for(let qIdx =0; qIdx < q_info.length(); qIdx++ )
+        var MaxQNum =0;
+        for(var qIdx =0; qIdx < q_info.length(); qIdx++ )
         {
             if(MaxQNum <  parseInt(q_info[qIdx].queue))
             {
                 MaxQNum = await parseInt(q_info[qIdx].queue);
             }
         }
-        let qNum =  await MaxQNum + 1;
+        var qNum =  await MaxQNum + 1;
         await res.render(__dirname + "/index" ,{ newQ_Info: qNum, shopName:  shopInfo});
     }
     
