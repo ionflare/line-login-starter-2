@@ -93,7 +93,7 @@ app.get("/", async (req, res) => {
         else
         {
         var MaxQNum =0;
-        for(var qIdx =0; qIdx < q_info.length(); qIdx++ )
+        for(var qIdx =0; qIdx < q_info.length; qIdx++ )
         {
             if(MaxQNum <  parseInt(q_info[qIdx].queue))
             {
