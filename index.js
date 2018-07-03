@@ -79,9 +79,9 @@ app.get('/', function (req, res) {
 */
 app.set("view engine", "ejs");  
 app.get("/", async (req, res) => {
-    var shopInfo = req.param('shop');
+    var shopInfo = await req.param('shop');
     //await window.sessionStorage.setItem("shopname", shopInfo);
-     var newQueue =0;
+     
     var q_info = await mongoQuery(shopInfo);
    
     if(q_info[0] == null)
@@ -92,15 +92,15 @@ app.get("/", async (req, res) => {
     }
     else
     {
-        let MaxQNum =0;
-        for(let qIdx =0; qIdx < q_info.length(); qIdx++ )
+        var MaxQNum =0;
+        for(var qIdx =0; qIdx < q_info.length(); qIdx++ )
         {
             if(MaxQNum <  parseInt(q_info[qIdx].queue))
             {
-                MaxQNum = parseInt(q_info[qIdx].queue);
+                MaxQNum = await parseInt(q_info[qIdx].queue);
             }
         }
-        let qNum = MaxQNum + 1;
+        let qNum =  await MaxQNum + 1;
         await res.render(__dirname + "/index" ,{ newQ_Info: qNum, shopName:  shopInfo});
     }
     
