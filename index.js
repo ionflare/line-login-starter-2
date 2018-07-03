@@ -179,7 +179,7 @@ function  getLatest_Que(input_Q) {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne( { queue: { $gte: input_Q } } , function(err, result) {
+    dbo.collection("q_info").findOne( { queue: { $gte: 1 } } , function(err, result) {
       
        if ( err )
        return reject( err );
