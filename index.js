@@ -183,18 +183,17 @@ function mongoQuery(inputShop) {
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne({ queue: { $eq: inputShop } }.toArray, function(err, result) {
-      
-       if ( err )
-       return reject( err );
-        else
-                {
+    dbo.collection("q_info").find({ shop: { $eq: inputShop } }).toArray( function(err, result) {
+          if ( err )
+          {
+            return reject( err );
+          }
+                
+           else
+          {
                  resolve(result);
-                }
-        //if (err) throw err;
-        //console.log(result.name + " " +result.address);
-        db.close();
-        });
+            }
+        }); 
     });
    
   });
