@@ -147,7 +147,7 @@ app.post("/insert_Q_info", async (req, res) => {
                 
                     clientBot_2.pushMessage(req.body.lineCode, { 
                     type: "text",
-                    text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"." 
+                    text: "Success!! You just booked Queue No."+ req.body.qNum +" from Shop : "+ req.body.shop +"." 
                     });
                     await res.send("Booking Successful!! Information has been sent to your Line ID");
             }
