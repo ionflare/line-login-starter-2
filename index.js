@@ -222,7 +222,7 @@ function  getLatest_Que(input_Q) {
     
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
     
-   dbo.collection("q_info").find( { $and: [ { shopName: { $eq: input_Q.shop } }, { queue: { $gte: parseInt(input_Q.qNum) } } ] }, function(err, result)  {
+   dbo.collection("q_info").find( { $and: [ { shopName: input_Q.shop }, { queue: { $gte:   parseInt(input_Q.qNum)    } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
