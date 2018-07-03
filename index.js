@@ -92,8 +92,8 @@ app.get("/", async (req, res) => {
     }
     else
     {
-        var MaxQNum =0;
-        for(var qIdx =0; qIdx < q_info.length(); qIdx++ )
+        let MaxQNum =0;
+        for(let qIdx =0; qIdx < q_info.length(); qIdx++ )
         {
             if(MaxQNum <  parseInt(q_info[qIdx].queue))
             {
@@ -129,7 +129,7 @@ app.post('/insert_Q_info', function(req,res){
 
 
 app.post("/insert_Q_info", async (req, res) => {
-    var latest_Que = await getLatest_Que(req.body.qNum);
+    var latest_Que = await getLatest_Que(req.body);
     
     if (latest_Que != null) {
         await res.send("Duplicate Q");
@@ -139,12 +139,19 @@ app.post("/insert_Q_info", async (req, res) => {
         var resultInsert = await Insert_Que(req.body);
         if (resultInsert == "good")
         {
-             clientBot_2.pushMessage(req.body.lineCode, { 
-            type: "text",
-            text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"."
-            
-            });
-             await res.send("Successfully booking queue.");
+            if(resultInsert != null)
+            {
+                await res.send("Failed to Booking queue(Duplicate).");
+            }
+            else
+            {
+                clientBot_2.pushMessage(req.body.lineCode, { 
+                type: "text",
+                text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"." 
+                });
+                await res.send("Successfully booking queue.");
+            }
+           
         }
         else
         {
@@ -206,23 +213,28 @@ function  getLatest_Que(input_Q) {
     
     return new Promise( ( resolve, reject ) => {
    
-   let in_q = parseInt(input_Q);
      MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     //var dbo = db.db("mydb");
     var dbo = db.db("linebookingsys");
     
-    dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
+    //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
+    
+   dbo.collection("q_info").find( { $and: [ { shop: { $eq: input_Q.shop } }, { queue: { $gte: parseInt(input_Q.qNum) } } ] }, function(err, result)  {
+    //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
       
        if ( err )
-       return reject( err );
-        else
-                {
-                 resolve(result);
-                }
-        //if (err) throw err;
-        //console.log(result.name + " " +result.address);
-        db.close();
+       {
+           db.close();
+           reject( "failed" );}
+       
+       else
+       {
+           db.close();
+                 resolve("good");
+       }
+        
+        
         });
     });
    
@@ -234,7 +246,7 @@ function  Insert_Que(input_Q) {
     
     return new Promise( ( resolve, reject ) => {
    
-   let in_q = parseInt(input_Q);
+   
      MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     //var dbo = db.db("mydb");
