@@ -134,7 +134,7 @@ app.post("/insert_Q_info", async (req, res) => {
     var latest_Que = await getLatest_Que(req.body);
     
     if (latest_Que == "failed" || latest_Que != null) {
-        await res.send("Duplicate Q");
+        await res.send(latest_Que.queue);
     }
     else 
     {
