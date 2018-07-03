@@ -228,7 +228,7 @@ function  getLatest_Que(input_Q) {
     let inp_q = parseInt(input_Q.qNum); 
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
     
-   dbo.collection("q_info").find( { $and: [ { shopName: input_Q.shop }, { queue: { $gte:   1   } } ] }, function(err, result)  {
+   dbo.collection("q_info").find( { $and: [ { shopName: { $eq: input_Q.shopName }  }, { queue: { $gte:   inp_q   } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
          if ( err )
           {
