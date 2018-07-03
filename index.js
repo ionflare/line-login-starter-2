@@ -149,7 +149,7 @@ app.post("/insert_Q_info", async (req, res) => {
                     type: "text",
                     text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"." 
                     });
-                    await res.send("Successfully booking queue.");
+                    await res.send("Booking Successful!! Information has been sent to your Line ID");
             }
             else
             {
