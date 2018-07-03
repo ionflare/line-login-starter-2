@@ -141,11 +141,30 @@ app.post("/insert_Q_info", async (req, res) => {
 
         if(lat_Que[0] == null)
         {
-            await res.send(lat_Que[0].shopName);
+            var resultInsert = await Insert_Que(req.body);
+             if (resultInsert == "good")
+            {
+                if(resultInsert != null)
+                {
+                    await res.send("Failed to Booking queue(Duplicate).");
+                }
+                else
+                {
+                    clientBot_2.pushMessage(req.body.lineCode, { 
+                    type: "text",
+                    text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"." 
+                    });
+                    await res.send("Successfully booking queue.");
+                }
+           }
+            else
+            {
+                await res.send("Error occurred while inserting queue data into Mlab.");
+            }
         }
         else
         {
-            await res.send(lat_Que[0].shopName);
+             await res.send("Failed to Booking queue(Duplicate).");
         }
         
     }
@@ -239,7 +258,7 @@ function  getLatest_Que(input_Q) {
     //dbo.collection("q_info").find({}, function(err, result)  {
     //dbo.collection("q_info").find( { $and: [ { shopName: { $eq: input_Q.shop }  }, { queue: { $gte:   inp_q   } } ] }, function(err, result)  {
     //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
-     dbo.collection("q_info").find({ $and: [ { shopName: { $eq: input_Q.shop }  }, { queue: { $gte:   1   } } ] }).toArray( function(err, result) {
+     dbo.collection("q_info").find({ $and: [ { shopName: { $eq: input_Q.shop }  }, { queue: { $gte:   inp_q   } } ] }).toArray( function(err, result) {
           if ( err )
           {
                db.close();
