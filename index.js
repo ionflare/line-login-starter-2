@@ -56,11 +56,7 @@ app.get("/callback", login.callback(
         //res.json(token_response);
          //res.send(token_response.id_token.name);
         res.render(__dirname + "/callback",{ userInfo: token_response} );
-        clientBot_2.pushMessage(token_response.id_token.sub, { 
-            type: "text",
-            text: "Success!!"
-            
-        });
+       
         
         
     },(req, res, next, error) => {
@@ -85,8 +81,20 @@ app.set("view engine", "ejs");
 app.get("/", async (req, res) => {
     var shopInfo = req.param('shop');
     //await window.sessionStorage.setItem("shopname", shopInfo);
+     var newQueue =0;
     var q_info = await mongoQuery();
-    await res.render(__dirname + "/index" ,{ posts: q_info, shopName:  shopInfo});
+   
+    if(q_info == null)
+    {
+
+        await res.render(__dirname + "/index" ,{ newQ_Info: 1, shopName:  shopInfo});
+        
+    }
+    else
+    {
+        await res.render(__dirname + "/index" ,{ newQ_Info: q_info.queue+1, shopName:  shopInfo});
+    }
+    
 
     
     
@@ -119,7 +127,21 @@ app.post("/insert_Q_info", async (req, res) => {
     }
     else 
     {
-        await res.send("This Q is good to go");
+        var resultInsert = await Insert_Que(req.body);
+        if (resultInsert == "good")
+        {
+             clientBot_2.pushMessage(req.body.lineCode, { 
+            type: "text",
+            text: "Succese!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"."
+            
+            });
+             await res.send("Error occurred while inserting queue data into Mlab.");
+        }
+        else
+        {
+             await res.send("Error occurred while inserting queue data into Mlab.");
+        }
+       
     }
     
     //await res.send(latest_Que);
@@ -191,6 +213,39 @@ function  getLatest_Que(input_Q) {
         //if (err) throw err;
         //console.log(result.name + " " +result.address);
         db.close();
+        });
+    });
+   
+  });
+  
+}    
+
+function  Insert_Que(input_Q) {
+    
+    return new Promise( ( resolve, reject ) => {
+   
+   let in_q = parseInt(input_Q);
+     MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //var dbo = db.db("mydb");
+    var dbo = db.db("linebookingsys");
+    
+    
+    dbo.collection("q_info").insertOne( { queue: parseInt(input_Q.qNum), name:  input_Q.name, Line_code: parseInt(input_Q.lineCode) }, function(err, result)  {
+    //dbo.collection("q_info").findOne( { queue: { $gte: in_q } } , function(err, result) {
+      
+       if ( err )
+       {
+           db.close();
+           reject( "failed" );}
+       
+       else
+       {
+           db.close();
+                 resolve("good");
+       }
+        
+        
         });
     });
    
