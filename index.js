@@ -133,10 +133,10 @@ app.post("/insert_Q_info", async (req, res) => {
         {
              clientBot_2.pushMessage(req.body.lineCode, { 
             type: "text",
-            text: "Succese!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"."
+            text: "Success!! You just booked Queue No. : "+ req.body.qNum +" From Shop : "+ req.body.shop +"."
             
             });
-             await res.send("Error occurred while inserting queue data into Mlab.");
+             await res.send("Successfully booking queue.");
         }
         else
         {
