@@ -113,7 +113,7 @@ app.get("/", async (req, res) => {
 
 
 
-app.get('/sitemap',function(req,res){
+app.get('/manaage',function(req,res){
   res.sendFile(__dirname+'/sitemap.html');
 });
 /*
