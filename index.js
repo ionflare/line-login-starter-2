@@ -116,7 +116,7 @@ app.get("/", async (req, res) => {
 app.get("/manage", async (req, res) => {
   //res.sendFile(__dirname+'/sitemap.html');
    var allShop = await mongoQueryShop();
-   res.send(allShop[0]);
+   await res.send(allShop[0]);
 });
 /*
 app.post('/insert_Q_info', function(req,res){
