@@ -113,8 +113,10 @@ app.get("/", async (req, res) => {
 
 
 
-app.get("/manage",function(req,res){
-  res.sendFile(__dirname+'/sitemap.html');
+app.get("/manage", async (req, res) => {
+  //res.sendFile(__dirname+'/sitemap.html');
+   var allShop = await mongoQueryShop();
+   res.send(allShop[0]);
 });
 /*
 app.post('/insert_Q_info', function(req,res){
@@ -185,6 +187,16 @@ function pushText(client, userID, returnStr,postBackStr) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 function mongoQuery(inputShop) {
     
     return new Promise( ( resolve, reject ) => {
@@ -211,7 +223,51 @@ function mongoQuery(inputShop) {
    
   });
   
+} 
+
+
+function mongoQueryShop() {
+    
+    return new Promise( ( resolve, reject ) => {
+   
+     MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //var dbo = db.db("mydb");
+    var dbo = db.db("linebookingsys");
+    
+    //dbo.collection("q_info").find({ shopName: { $eq: inputShop } }).toArray( function(err, result) {
+     dbo.collection("q_info").distinct("shopName").toArray( function(err, result) {
+    
+          if ( err )
+          {
+               db.close();
+              reject( "failed" );
+          }
+                
+           else
+          {
+               db.close();
+                 resolve(result);
+            }
+        }); 
+    });
+   
+  });
+  
 }    
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 function  getLatest_Que(input_Q) {
     
