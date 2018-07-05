@@ -236,7 +236,9 @@ function mongoQueryShop() {
     var dbo = db.db("linebookingsys");
     
     //dbo.collection("q_info").find({ shopName: { $eq: inputShop } }).toArray( function(err, result) {
-     dbo.collection("q_info").distinct("shopName").toArray( function(err, result) {
+     //dbo.collection("q_info").distinct("shopName").toArray( function(err, result) {
+    dbo.collection("q_info").distinct("shopName", function(err, result)  {     
+         
     
           if ( err )
           {
