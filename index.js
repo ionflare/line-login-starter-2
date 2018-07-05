@@ -118,9 +118,9 @@ app.get("/manage", async (req, res) => {
    var allShop = await mongoQueryShop();
    let allShopname ="";
    
-   for(let i =0; i< allShop.length(); i++)
+   for(let i =0; i< allShop.length; i++)
    {
-       allShopname = await allShopname +", "+allShop[i];
+       allShopname = await allShopname + ", " + allShop[i];
    }
     
    await res.send(allShopname);
