@@ -116,7 +116,14 @@ app.get("/", async (req, res) => {
 app.get("/manage", async (req, res) => {
   //res.sendFile(__dirname+'/sitemap.html');
    var allShop = await mongoQueryShop();
-   await res.send(allShop[0]);
+   let allShopname ="";
+   
+   for(let i =0; i< allShop.length(); i++)
+   {
+       allShopname = await allShopname +", "+allShop[i];
+   }
+    
+   await res.send(allShopname);
 });
 /*
 app.post('/insert_Q_info', function(req,res){
