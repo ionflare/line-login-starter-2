@@ -177,10 +177,10 @@ app.post("/insert_Q_info", async (req, res) => {
 
 
 app.post("/booking_shop_customer_info", async (req, res) => {
-    var shopInfo = await mongoQuery(req.body.shop)
+    let shopInfo = await mongoQuery(req.body.shop)
     
     
-    await res.send("Error occurred while inserting queue data into Mlab.");
+    await res.send(shopInfo);
     
   
 });
