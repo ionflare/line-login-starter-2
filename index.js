@@ -111,7 +111,7 @@ app.get("/", async (req, res) => {
     
 });
 
-
+app.set("view engine", "ejs");  
 
 app.get("/manage", async (req, res) => {
   //res.sendFile(__dirname+'/sitemap.html');
