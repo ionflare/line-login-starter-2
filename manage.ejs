@@ -28,7 +28,7 @@
 <script>
 $("#ShopInfo  li").click(function(){
     
-    
+    var xx;
         $.ajax({
       method: "POST",
       url: "https://line-login-starter-2.herokuapp.com/booking_shop_customer_info",
@@ -41,7 +41,7 @@ $("#ShopInfo  li").click(function(){
             alert( "Error Occured");
         },
         success: function(msg){ 
-            
+            xx= msg;
             
             var str ="<ul>";
             for(let i=0; i< msg.length; i++)
