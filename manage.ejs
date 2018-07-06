@@ -26,7 +26,7 @@
 
 </body>
 <script>
-var xx="";
+
 $("#ShopInfo  li").click(function(){
     
     
@@ -42,14 +42,14 @@ $("#ShopInfo  li").click(function(){
             alert( "Error Occured");
         },
         success: function(msg){ 
-            xx= msg;
+      
             
             var str ="<h1>All Customers in Shop : " + $(this).text() + "</h1>";
             for(let i=0; i< msg.length; i++)
             {
                 str = str +"<li>"+msg[i].name+"</li>";
             }
-            str ="<a href='/manage'>Back to Shop lists</a>";
+            str = str +"<a href='/manage'>Back to Shop lists</a>";
             
             $("#Shop_Customer_Info").append(str);
         
