@@ -116,24 +116,14 @@ app.get("/", async (req, res) => {
 app.get("/manage", async (req, res) => {
   //res.sendFile(__dirname+'/sitemap.html');
   
-  var shopInfo = await req.param('shop');
-  if( !(shopInfo == null ||   shopInfo == "") )
-  {
-        var allShop = await mongoQueryShop();
-        let allShopname ="";
+   var allShop = await mongoQueryShop();
+   let allShopname ="";
    
-        for(let i =0; i< allShop.length; i++)
-        {
-            allShopname = await allShopname + ", " + allShop[i];
-        }
-        await res.render(__dirname + "/manage",{ shopList:  allShop});
-      
-  }
-  
-  
-  
-  
- 
+   for(let i =0; i< allShop.length; i++)
+   {
+       allShopname = await allShopname + ", " + allShop[i];
+   }
+    await res.render(__dirname + "/manage",{ shopList:  allShop});
    //await res.send(allShopname);
    
 });
