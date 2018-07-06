@@ -169,17 +169,32 @@ app.post("/insert_Q_info", async (req, res) => {
         }
         else
         {
-             await res.send("Failed to Booking queue(Duplicate).");
+             
         }
         
     }
-    
-    
- 
-
-
-
 });
+
+
+app.post("/booking_shop_customer_info", async (req, res) => {
+    var shopInfo = await mongoQuery(req.body.shop)
+    
+    
+    await res.send("Error occurred while inserting queue data into Mlab.");
+    
+  
+});
+
+
+
+
+
+
+
+
+
+
+
 
 var MongoClient = require('mongodb').MongoClient;
 //var url = "mongodb://localhost:27017";
@@ -266,6 +281,7 @@ function mongoQueryShop() {
   });
   
 }    
+
 
 
 

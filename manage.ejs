@@ -5,21 +5,57 @@
 </head>
 <body>
     
-<h1>Shop List</h1>
+
 
 
 <div id="ShopInfo">
+<h1>Shop List</h1>
 <ul>
 <% for(var i=0; i<shopList.length; i++) {%>
   <li><%= shopList[i] %></li>
 <% } %>
 </ul>
 </div>
+
+<div id="Shop_Customer_Info">
+    
+</div>
+    
+    
+
+
 </body>
 <script>
 $("#ShopInfo  li").click(function(){
-    $("#ShopInfo").hide();
-    alert($(this).text());
+    
+    
+        $.ajax({
+      method: "POST",
+      url: "https://line-login-starter-2.herokuapp.com/booking_shop_customer_info",
+      data: JSON.stringify({  "shop": $(this).text()  }),
+      contentType: "application/json; charset=utf-8",
+      //dataType: "json",
+      
+        error: function(){
+            //return true;
+            alert( "Error Occured");
+        },
+        success: function(msg){ 
+            
+            let list = document.createElement('ul');
+             
+            for(let i=0; i< msg.length; i++)
+            {
+                 let item = document.createElement('li');
+                 item.appendChild(document.createTextNode(msg[i].name));
+            }
+            $("#Shop_Customer_Info").append("<h1>All customers in Shop :" +  $(this).text()+ "</h1>");
+            $("#Shop_Customer_Info").append(list);
+            $("#ShopInfo").hide();
+            //alert($(this).text());
+        }
+     });
+
 });
 </script>
 
