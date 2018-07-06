@@ -44,14 +44,17 @@ $("#ShopInfo  li").click(function(){
         success: function(msg){ 
             xx= msg;
             
-            var str ="<ul>";
+            var str ="";
             for(let i=0; i< msg.length; i++)
             {
                 str = str +"<li>"+msg[i].name+"</li>";
             }
-            str ="</ul>";
+            //str ="</ul>";
             
             $("#Shop_Customer_Info").append(str);
+            
+            
+            alert(str)
              $("#ShopInfo").hide();
             /*
             let list = document.createElement('ul');
