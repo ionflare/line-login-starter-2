@@ -29,7 +29,7 @@
 
 $("#ShopInfo  li").click(function(){
     
-    
+    var str ="<h1>All Customers in Shop : "+ $(this).text() + "</h1>";
         $.ajax({
       method: "POST",
       url: "https://line-login-starter-2.herokuapp.com/booking_shop_customer_info",
@@ -44,7 +44,7 @@ $("#ShopInfo  li").click(function(){
         success: function(msg){ 
       
             
-            var str ="<h1>All Customers in Shop : " + $(this).text() + "</h1>";
+            
             for(let i=0; i< msg.length; i++)
             {
                 str = str +"<li>"+msg[i].name+"</li>";
