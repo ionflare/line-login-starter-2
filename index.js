@@ -127,7 +127,7 @@ app.get("/manage", async (req, res) => {
    //await res.send(allShopname);
    
    
-     await res.render(__dirname + "/index" ,{ shopList:  allShop});
+     await res.render(__dirname + "/manage" ,{ shopList:  allShop});
 });
 /*
 app.post('/insert_Q_info', function(req,res){
