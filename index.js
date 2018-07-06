@@ -122,7 +122,7 @@ app.get("/manage", async (req, res) => {
    {
        allShopname = await allShopname + ", " + allShop[i];
    }
-    await res.render(__dirname + "/manage");
+    await res.render(__dirname + "/manage",{ shopList:  allShop});
    //await res.send(allShopname);
    
 });
