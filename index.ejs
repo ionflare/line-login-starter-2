@@ -52,6 +52,15 @@
   <input v-model="message">
 </div>
 
+
+<ol>
+  <!-- Create an instance of the todo-item component -->
+  <todo-item></todo-item>
+</ol>
+
+
+
+
 </body>
 
 
@@ -114,6 +123,13 @@
     message: 'Hello Vue!'
   }
 })
+
+Vue.component('todo-item', {
+  template: '<li>This is a todo</li>'
+})
+
+
+
     
 </script>
 
