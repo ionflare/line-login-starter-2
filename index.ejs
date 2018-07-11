@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   <script src=" https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  
+ 
+   
     <title>Welcome to my blog</title>
 </head>
 <body>
@@ -12,6 +16,15 @@
     <h3>Take Queue number:</h3>
     <h3><div id ="qNum"><%= newQ_Info %></div></h3>
     <p><a class="btn btn-primary btn-lg" href="/auth" role="button">Get Queue</a></p>
+    
+    <div id="app">
+     {{ message }}
+   </div>
+    
+    
+    
+    
+    
     
 </body>
 
@@ -23,6 +36,22 @@
     var qNum = $("#qNum").text();
      window.sessionStorage.setItem("qNum", qNum);
     //$("#shopName").text("Shop : " + res[1]);
+    
+    //===================Vue.js=============================
+    var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+    
+    
+    
+    
+    
+    
+    
+    
 </script>
 
 </html>
