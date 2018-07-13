@@ -16,16 +16,15 @@
     <h3>Take Queue number:</h3>
     <h3><div id ="qNum"><%= newQ_Info %></div></h3>
     <p><a class="btn btn-primary btn-lg" href="/auth" role="button">Get Queue</a></p>
-    
-    <div id="app">
+   
  
  
  
  
 
 
+<div v-bind:id="sample">
 
-<button v-on:click="doSwapVal">change</button>
 <template v-if="loginType === 'username'">
   <label>Username</label>
   <input placeholder="Enter your username" key="username-input">
@@ -36,8 +35,8 @@
 </template>
 
 
-<div v-bind:id="sample">
- 
+
+   <button v-on:click="doSwapVal">change</button>
 </div>
 
 
@@ -80,7 +79,7 @@ var vm = new Vue({
   }
 })
     
-
+</script>
 
 
 
