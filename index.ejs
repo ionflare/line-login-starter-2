@@ -38,6 +38,13 @@
   <button-counter></button-counter>
 </div>
 
+<div id="example-1">
+  <button v-on:click="counter += 1">Add 1</button>
+  <p>The button above has been clicked {{ counter }} times.</p>
+</div>
+
+
+
 
 
 </body>
@@ -66,6 +73,16 @@ Vue.component('button-counter', {
 })
 
 new Vue({ el: '#components-demo' })
+    
+    
+    
+var example1 = new Vue({
+  el: '#example-1',
+  data: {
+    counter: 0
+  }
+})    
+    
     
 </script>
 
