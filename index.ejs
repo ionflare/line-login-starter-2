@@ -36,7 +36,7 @@
 
 
 
-   <button v-on:click="doSwapVal">change</button>
+   <button id="gg" v-on:click="doSwapVal">change</button>
 </div>
 
 
@@ -83,9 +83,16 @@ var vm = new Vue({
   }
   */
 })
-    
-function doSwapVal(){
-   if(vm.loginType =='username')
+
+
+var vm2 = new Vue({
+  el: '#gg',
+
+  computed: {
+    // a computed getter
+    doSwapVal: function () {
+      // `this` points to the vm instance
+      if(vm.loginType =='username')
       {
          vm.loginType = 'email';
       }
@@ -93,11 +100,15 @@ function doSwapVal(){
       {
         vm.loginType  = 'username';
       }
-}    
-    
-    
-    
-    
+      
+    }
+  }
+})
+
+
+
+
+
     
 </script>
 
