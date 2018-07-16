@@ -14,18 +14,6 @@
    <script src=" https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   
     <title>Welcome to my blog</title>
-      <script>
-  
-Vue.component('blog-post', {
-  // camelCase in JavaScript
-  props: ['postTitle'],
-  template: '<h3>{{ postTitle }}</h3>'
-})
-
-
-  </script>
-    
-    
 </head>
 <body>
     <h2> <div id="shopName"><div><%= shopName %>  </h2>
@@ -39,24 +27,15 @@ Vue.component('blog-post', {
  
 
 
-<div id="sample">
-
-<template v-if="loginType == 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
-</template>
-<template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
-</template>
 
 
 
-   <button v-on:click="doSwapVal">change</button>
+
+
+
+<div id="components-demo">
+  <button-counter></button-counter>
 </div>
-
-
- <blog-post post-title="hello!"></blog-post>
 
 
 
@@ -75,31 +54,17 @@ Vue.component('blog-post', {
     
     //===================Vue.js=============================
 
-var vm = new Vue({
-  el: '#sample',
-  data: {
-    loginType: 'username'
-  },
-  computed: {
-    // a computed getter
-    doSwapVal: function () {
-      // `this` points to the vm instance
-      if(this.loginType =='username')
-      {
-         this.loginType = 'email';
-      }
-      else
-      {
-        this.loginType  = 'username';
-      }
-      
+// Define a new component called button-counter
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
     }
-  }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
 })
 
-
-
-
+new Vue({ el: '#components-demo' })
     
 </script>
 
