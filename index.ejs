@@ -36,11 +36,11 @@
 
 
 
-   <button id="gg" v-on:click="doSwapVal">change</button>
+   <button v-on:click="doSwapVal">change</button>
 </div>
 
 
- 
+ <blog-post post-title="hello!"></blog-post>
 
 
 
@@ -63,9 +63,7 @@ var vm = new Vue({
   el: '#sample',
   data: {
     loginType: 'username'
-  }
-  /*
-  ,
+  },
   computed: {
     // a computed getter
     doSwapVal: function () {
@@ -81,28 +79,12 @@ var vm = new Vue({
       
     }
   }
-  */
 })
 
-
-var vm2 = new Vue({
-  el: '#gg',
-
-  computed: {
-    // a computed getter
-    doSwapVal: function () {
-      // `this` points to the vm instance
-      if(vm.loginType =='username')
-      {
-         vm.loginType = 'email';
-      }
-      else
-      {
-        vm.loginType  = 'username';
-      }
-      
-    }
-  }
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['postTitle'],
+  template: '<h3>{{ postTitle }}</h3>'
 })
 
 
