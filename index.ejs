@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html>
+  
+  
+  <script>
+  
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['postTitle'],
+  template: '<h3>{{ postTitle }}</h3>'
+})
+
+
+  </script>
+  
+  
+  
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
@@ -80,13 +95,6 @@ var vm = new Vue({
     }
   }
 })
-
-Vue.component('blog-post', {
-  // camelCase in JavaScript
-  props: ['postTitle'],
-  template: '<h3>{{ postTitle }}</h3>'
-})
-
 
 
 
