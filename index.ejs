@@ -2,16 +2,7 @@
 <html>
   
   
-  <script>
-  
-Vue.component('blog-post', {
-  // camelCase in JavaScript
-  props: ['postTitle'],
-  template: '<h3>{{ postTitle }}</h3>'
-})
 
-
-  </script>
   
   
   
@@ -22,9 +13,19 @@ Vue.component('blog-post', {
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src=" https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   
- 
-   
     <title>Welcome to my blog</title>
+      <script>
+  
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['postTitle'],
+  template: '<h3>{{ postTitle }}</h3>'
+})
+
+
+  </script>
+    
+    
 </head>
 <body>
     <h2> <div id="shopName"><div><%= shopName %>  </h2>
